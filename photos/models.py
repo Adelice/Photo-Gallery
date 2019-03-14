@@ -19,4 +19,7 @@ class Location(models.Model):
     city = models.CharField(max_length =30)
     def __str__(self):
         return self.country
-class Category(models.model):          
+class Category(models.Model):
+    category = models.CharField(max_length =30) 
+    def __str__(self):
+        return self.category         
