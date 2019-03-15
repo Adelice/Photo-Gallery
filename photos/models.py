@@ -30,7 +30,7 @@ class Image(models.Model):
             return Image.objects.get(id=1) 
     @classmethod
     def search_by_category(cls,search_images):
-        images = Image.objects.filter(categories__name__icontains=search_images)
+        images = Image.objects.filter(Category__category__icontains=search_images)
         return images         
     class Meta:
         ordering = ['name']    

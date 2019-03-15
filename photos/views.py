@@ -10,19 +10,15 @@ def photos_of_day(request):
     
    
     return render(request, 'all_photos/today_photos.html', {"date": date, "photos": photos})      
-# def past_days_news(request, past_date):
+def search_results(request):
 
-#     try:
-#         # Converts data from the string Url
-#         date = dt.datetime.strptime(past_date, '%Y-%m-%d').date()
+    if 'Category' in request.GET and request.GET['Category']:
+        search_images = request.GET.get("Category")
+        searched_images = Image.search_by_category(search_images)
+        message = f"{search_images}"
 
-#     except ValueError:
-#         # Raise 404 error when ValueError is thrown
-#         raise Http404()
-#         assert False
+        return render(request, 'search.html',{"message":message,"images": searched_images})
 
-#     if date == dt.date.today():
-#         return redirect(news_of_day)
-#     news = Article.days_news(date)    
-
-#     return render(request, 'all-news/past-news.html', {"date": date,"news":news})
+    else:
+        message = "You haven't searched for any image"
+        return render(request, 'search.html',{"message":message})
