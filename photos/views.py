@@ -2,13 +2,14 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
+from .models import Image
 # Create your views here.
 def photos_of_day(request):
     date = dt.date.today()
-    # news = Article.todays_news()
-    # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
+    photos = Image.objects.all()
+    
    
-    return render(request, 'all_photos/today_photos.html', {"date": date})      
+    return render(request, 'all_photos/today_photos.html', {"date": date, "photos": photos})      
 # def past_days_news(request, past_date):
 
 #     try:
