@@ -11,16 +11,23 @@
 
   </div>
 
-  <div class="row">
-
-  {% if images %}
-    {% for item in images %}
-      <div class="col-sm-12 col-md-12">
-          <h1>{{item.name}}</h1>
-        <img src="{{item.image.url}}">
+ 
+ 
+    <div class="row">
+      <div class="container">
+        <div class="card-columns">
+          {% if images %}
+          {% for image in images %}
+          <div class="card border-secondary">
+            <div class="card-header"><h4>{{image.name}}</h4></div>
+            <img class="card-img-top" class="img-responsive" src="{{image.image.url}}" size="100px200">
+          </div>
+  
+          {%endfor%}
+        </div>
+  
       </div>
-    {% endfor %}
-  {% endif %}
+      {% endif %}
+    </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}
