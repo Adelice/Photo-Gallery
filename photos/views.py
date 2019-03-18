@@ -2,23 +2,38 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
-from .models import Image
+from .models import Image,Location,Category
 # Create your views here.
 def photos_of_day(request):
     date = dt.date.today()
     photos = Image.objects.all()
-    
+    location = Location.objects.all()
+    category = Category.objects.all()
+    if 'location' in request.GET and request.GET['location']:
+        name = request.GET.get('location')
+        images = Image.view_location(name)
+
+    elif 'category' in request.GET and request.GET['category']:
+        cat = request.GET.get('categories')
+        images = Image.view_category(cat)
+        return render(request, 'all_photos/today_photos.html', {"name":name,"images":images,"cat":cat })
+
+
    
     return render(request, 'all_photos/today_photos.html', {"date": date, "photos": photos})      
 def search_results(request):
+    '''
+    search function to display search search_results
+    args:
+    order defines category
+    '''
+    if 'image' in request.GET and request.GET["image"]:
+        search_term = request.GET.get("image")
+        searched_images = Image.search_by_category(search_term)
+        message = f"{search_term}"
 
-    if 'Category' in request.GET and request.GET['Category']:
-        search_images = request.GET.get("Category")
-        searched_images = Image.search_by_category(search_images)
-        message = f"{search_images}"
-
-        return render(request, 'search.html',{"message":message,"images": searched_images})
+        return render(request, 'search.html', {"message": message, "images": searched_images})
 
     else:
-        message = "You haven't searched for any image"
-        return render(request, 'search.html',{"message":message})
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {"message": message})

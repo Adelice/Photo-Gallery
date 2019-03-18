@@ -6,8 +6,11 @@ class Location(models.Model):
     city = models.CharField(max_length =30)
     def __str__(self):
         return self.country
+    def save_category(self):
+        self.save()
+    
 class Category(models.Model):
-    category = models.CharField(max_length =30) 
+    name = models.CharField(max_length =30) 
     def __str__(self):
         return self.category         
 class Image(models.Model):
@@ -15,8 +18,8 @@ class Image(models.Model):
     name = models.CharField(max_length =30)
     description = models.TextField(max_length =30)
     pub_date = models.DateTimeField(auto_now_add=True)
-    image_location = models.ForeignKey(Location, null=True)
-    image_category = models.ForeignKey(Category, null=True)
+    location = models.ForeignKey(Location, null=True)
+    category = models.ForeignKey(Category, null=True)
     def __str__(self):
         return self.name
     def save_image(self):
@@ -29,8 +32,14 @@ class Image(models.Model):
         except DoesNotExist:
             return Image.objects.get(id=1) 
     @classmethod
-    def search_by_category(cls,search_images):
-        images = Image.objects.filter(Category__category__icontains=search_images)
-        return images         
-    class Meta:
-        ordering = ['name']    
+    def search_by_category(cls, search_term):
+        display = cls.objects.filter(category__name__icontains=search_term)
+        return display     
+    @classmethod
+    def view_location(cls,name):
+        location = cls.objects.filter(location=name)
+        return location
+    @classmethod
+    def view_category(cls,cat):
+        image_category = cls.objects.filter(image_category=cat)
+        return image_category    
