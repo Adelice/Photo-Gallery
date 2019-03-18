@@ -7,20 +7,17 @@ from .models import Image,Location,Category
 def photos_of_day(request):
     date = dt.date.today()
     photos = Image.objects.all()
-    location = Location.objects.all()
+    locations = Location.objects.all()
     category = Category.objects.all()
-    if 'location' in request.GET and request.GET['location']:
-        name = request.GET.get('location')
-        images = Image.view_location(name)
-
-    elif 'category' in request.GET and request.GET['category']:
-        cat = request.GET.get('categories')
-        images = Image.view_category(cat)
-        return render(request, 'all_photos/today_photos.html', {"name":name,"images":images,"cat":cat })
+   
+    # elif 'category' in request.GET and request.GET['category']:
+    #     cat = request.GET.get('categories')
+    #     images = Image.view_category(cat)
+    #     return render(request, 'all_photos/today_photos.html', {"name":name,"images":images,"cat":cat })
 
 
    
-    return render(request, 'all_photos/today_photos.html', {"date": date, "photos": photos})      
+    return render(request, 'all_photos/today_photos.html', {"date": date, "photos": photos, "locations": locations})      
 def search_results(request):
     '''
     search function to display search search_results
@@ -37,3 +34,8 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message": message})
+def location(request,location):
+    locations = Location.objects.all()
+    selected_location = Location.objects.get(id = location)
+    images = Image.objects.filter(location = selected_location.id)
+    return render(request, 'location.html', {"location":selected_location,"locations":locations,"images":images})
