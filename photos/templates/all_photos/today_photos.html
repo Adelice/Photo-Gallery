@@ -9,11 +9,10 @@
   
     <div class="row">
      
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <!-- <h2 class="text-center"> {{photos_item.name }} </h2> -->
-      </div>
      
-      <div class=" col-md-12">
+     
+     
+      <div class="col-md-4">
           <a href="" data-toggle="modal" data-target="#{{photos_item.id}}"> <img src="{{photos_item.image.url}}" class="img-responsive" alt="Image" height="250" width="250"></a>
         </div>
         <div id="{{photos_item.id}}" class="modal fade" role="dialog">
@@ -29,8 +28,9 @@
                      
                       <h4 class="modal-title text-center">{{photos_item.name}}</h4>
                       <p>Description:{{photos_item.description}}</p>
-                      <p> Location:{{photos_item.location.country}} {{photos_item.location.city}}</p>
-                      <a href="/share/{{photos_item.id}}" class="btn btn-primary">Copy image address to clipboard</a>
+                      <p> Country:{{photos_item.location.country}} </p>
+                      <p> City: {{photos_item.location.city}}</p>
+                      <button class="btn btn-outline-dark btn-sm" onclick="myFunction"{{image.id}}-url);return false;">Copy URL</button>
                     </div>
                   
                     <div class="modal-footer">
@@ -40,7 +40,20 @@
               
                 </div>
               </div>
-          
+              <script type="text/javascript">
+                function myFunction() {
+                   /* Get the text field */
+                   var copyText = document.getElementById("{{image.id}}-url");
+                   /* Select the text field */
+                   copyText.select();
+                   /* Copy the text inside the text field */
+                   document.execCommand("copy");
+                   /* Alert the copied text */
+                   alert("Copied the text: " + copyText.value);
+                }
+                </script>
+             {% endfor %}
+           
   
   
     </div>
