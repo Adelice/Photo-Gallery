@@ -15,3 +15,20 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
+.navbar{
+
+  font-family: 'Abel', sans-serif;
+  font-size: 20px;
+  background-image: url('/static/img/purple.jpg');
+  background-repeat: repeat-x;
+
+}
+
+
+
+
+
+.modal-content {
+  background-color: rgba(255,0,255,0.7);
+  text-decoration-color: white;
+}
