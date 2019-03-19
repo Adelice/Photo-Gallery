@@ -12,10 +12,9 @@ this is a personal gallery  of photos
 
 ### Installing
 * Install Django Framework '''$pip install django==1.11'''
-* Install Python Version --3.6.4
-* Install gunicorn in (virtual) -python3.6 -m pip install gunicorn
+* Install Python Version --3.6
 * Install the Heroku Cli
-* $ git clone https://github.com/MrazTevin/Gallery-Application.git
+* $ git clone https://github.com/Adelice/Photo-Gallery.git 
 * $ Python3.6 -m venv Virtual
 * $ Source virtual/bin/activate
 
