@@ -2,10 +2,18 @@
 
 {% block content %}
 {{block.super}}
-<div class="container">
+
 
     <!-- Looping through news   -->
+  
+  <div class="jumbotron text-center">
+    <h1 style="padding-top: 85px; font-family: 'Montserrat', sans-serif; font-size: 6em;">NANCY'S GALLERY</h1>
+    <p style="font-family: 'Montserrat', san-serif; font-size:30px;">{{location.country}}</p>
+    <p style="font-family: 'Montserrat', san-serif; font-size:30px; color: brown;">Welcome to my gallery
+    </p>
+  </div>
   {% for photos_item in photos %}
+  <div class="container"></div>
   
     <div class="row">
      
@@ -20,9 +28,9 @@
         
                 <div class="modal-content">
                     <div class="modal-header">
-                      <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    
                      
-                      <img src="{{photos_item.image.url}}" alt="" id='myImg' height="600" width="680">
+                      <img style="display:inline-block; margin:80px; padding:40px; "src="{{photos_item.image.url}}" alt="" id='myImg' height="600" width="680">
                     </div>
                     <div class="modal-body">
                      
