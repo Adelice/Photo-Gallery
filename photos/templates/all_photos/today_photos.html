@@ -12,15 +12,10 @@
     <p style="font-family: 'Montserrat', san-serif; font-size:30px; color: brown;">Welcome to my gallery
     </p>
   </div>
+<div class="container" style="font-family: 'Karla', sans-serif;">
+  <div class="row">
   {% for photos_item in photos %}
-  
-  
-   
-     
-     
-     
-     
-      <div class="col-md-4">
+   <div class="col-md-4">
           <a href="" data-toggle="modal" data-target="#{{photos_item.id}}"> <img src="{{photos_item.image.url}}" class="img-responsive" alt="Image" height="250" width="250"></a>
         </div>
         <div id="{{photos_item.id}}" class="modal fade" role="dialog">
@@ -71,7 +66,8 @@
 
      
   {% endfor %}
-   
+</div>
+</div>   
   
   
 {% endblock %}
