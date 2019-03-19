@@ -1,6 +1,19 @@
 #### Personal Gallery
 #### Description
 this is a personal gallery  of photos
+### BDD
+The program lets the admin upload photos
+
+*Example input: Submit image form
+*Example output: Image is shown on website
+The program lets the user search for an image based on category
+
+*Example input: Submit search form
+*Example output: displays results based on search term
+The program lets the user select images based on a location
+
+*Example input: User selects specific location
+*Example output: displays images for location selected
 ## Setup/Installations
 ### Prerequisites
 * Git
