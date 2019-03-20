@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from decouple import config
+from decouple import config,Csv
 import django_heroku
 django_heroku.settings(locals(), staticfiles=False)
 
