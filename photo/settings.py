@@ -20,17 +20,8 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG',default=False, cast=bool)
 ALLOWED_HOSTS = ['*']
 # development
-DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DBNAME'),
-        'USER':config('USER'),
-        'PASSWORD':config('PASSWORD')
-   }
-}
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+
+
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -105,6 +96,9 @@ DATABASES = {
         'PASSWORD':'adelice'
     }
 }
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
